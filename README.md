@@ -15,6 +15,18 @@ The final README (max 1,000 words, two figures) is written in December. This fil
 | 3 | Name the patterns that break compact blocks | – |
 | 4 | Coach report generator, README, pitch video | – |
 
+## Where things are
+
+| Folder | What's in it |
+|---|---|
+| `docs/` | `PROJECT_LOG.md` (step-by-step record, problems, decisions) and `DATA_REFERENCE.md` (what the data contains) |
+| `src/compact_block/` | The reusable code: loading files, measuring the block, drawing pitches |
+| `scripts/` | Small programs you run: download data, build the measurements, draw check pictures |
+| `notebooks/` | Step-by-step walkthrough notebooks (one per stage) |
+| `exploration/` | The quick tests used to choose the topic (not part of the final method) |
+| `outputs/figures/` | Pictures produced by the scripts |
+| `data/` | SkillCorner data after download (not stored in the repository) |
+
 ## Run it
 
 ```bash
