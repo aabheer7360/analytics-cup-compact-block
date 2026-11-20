@@ -4,6 +4,7 @@ Usage: python scripts/download_data.py
 Needs git. About 1.9 GB. The data is not stored in this repository.
 """
 import hashlib
+import os
 import shutil
 import subprocess
 import sys
@@ -22,8 +23,8 @@ def main():
         return
     with tempfile.TemporaryDirectory() as tmp:
         # Clone without the large tracking files (they are stored with Git LFS).
-        subprocess.run(["git", "clone", "--depth", "1", REPO, tmp], check=True,
-                       env={"GIT_LFS_SKIP_SMUDGE": "1", "PATH": shutil.os.environ["PATH"]})
+        env = dict(os.environ, GIT_LFS_SKIP_SMUDGE="1")
+        subprocess.run(["git", "clone", "--depth", "1", REPO, tmp], check=True, env=env)
         shutil.copytree(Path(tmp) / "data" / "matches", DEST)
 
     # Replace each LFS pointer with the real tracking file, checking its hash.

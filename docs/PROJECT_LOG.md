@@ -117,3 +117,13 @@ Compact blocks were breached about half as often, but still about a quarter of t
 - 🟡 Build the coaching rule around **screen gap** (steadier) or **back–mid gap** (familiar coaching language)?
 - 🟡 Is the **breach definition** right from a coaching point of view? Currently: on the ball inside the defensive shape, in the centre or half-spaces, in the middle or final third.
 - 🟡 Keep the **8-of-10 camera filter**, or test alternatives first?
+
+---
+
+## Step 4 — Moving to Claude Code on Aabheer's PC (20 Nov)
+
+**What:** decided to continue in Claude Code on Aabheer's own PC, so he can see and run the code himself. A new Claude Code session doesn't see the claude.ai chat, so `CLAUDE.md` (read automatically at the start of every session) now records how Aabheer wants to work, where things stand, the open decisions, risks and technical pitfalls.
+
+**Fix made:** ⚠️ `scripts/download_data.py` ran git with only the `PATH` setting, which would likely fail on Windows (git needs other system settings there). It now passes the full environment.
+
+**Agreed way of working:** notebooks (one per stage) for understanding, `src/` for reusable code; discuss changes before making them; log every step here.
