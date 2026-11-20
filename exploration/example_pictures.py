@@ -5,11 +5,11 @@ from mplsoccer import Pitch
 from scipy.spatial import ConvexHull
 M='1925299'; import pathlib
 D=str(pathlib.Path(__file__).resolve().parents[1]/'data'/'matches'/M)+'/'
-meta=json.load(open(D+f'{M}_match.json'))
+meta=json.load(open(D+f'{M}_match.json',encoding='utf-8'))
 team={p['id']:p['team_id'] for p in meta['players']}
 gk={p['id'] for p in meta['players'] if 'Goalkeeper' in str(p['player_role'])}
 name={p['id']:p['short_name'] for p in meta['players']}
-frames=[json.loads(l) for l in open(D+f'{M}_tracking_extrapolated.jsonl')]
+frames=[json.loads(l) for l in open(D+f'{M}_tracking_extrapolated.jsonl',encoding='utf-8')]
 fr={f['frame']:f for f in frames}
 e=pd.read_csv(D+f'{M}_dynamic_events.csv',low_memory=False)
 ph=pd.read_csv(D+f'{M}_phases_of_play.csv')

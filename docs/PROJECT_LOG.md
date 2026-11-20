@@ -127,3 +127,9 @@ Compact blocks were breached about half as often, but still about a quarter of t
 **Fix made:** ⚠️ `scripts/download_data.py` ran git with only the `PATH` setting, which would likely fail on Windows (git needs other system settings there). It now passes the full environment.
 
 **Agreed way of working:** notebooks (one per stage) for understanding, `src/` for reusable code; discuss changes before making them; log every step here.
+
+**Set up on this PC (20 Nov):** Python 3.13.2, virtual environment in `.venv` (git-ignored). pip installed **pandas 3.1.1**, newer than the pandas 2.x the code was written with. Handover files committed (`7146a0e`) and all local commits pushed to GitHub. Git author for this repo: `Aabheer <aabheer7360@users.noreply.github.com>`.
+
+**Reproduction check ✅:** downloaded all 20 matches (1.8 GB, every tracking file matched its checksum), rebuilt `block_frames.parquet` and got the same result as Step 3: **193,920 frames, 57% well observed**. The medians for both block types and the shares of each line structure also match exactly. So pandas 3 changes nothing here.
+
+- ⚠️ *Windows text-encoding bug (fixed).* On the 4th match the build crashed with `UnicodeDecodeError`. Windows opens text files as cp1252 by default instead of UTF-8, and a match file contains a character cp1252 can't read (probably an accented name). The check above was first run with `PYTHONUTF8=1` set as a workaround. Fix (agreed with Aabheer): `encoding="utf-8"` added to the two `open()` calls in `src/compact_block/load.py` and the two in `exploration/example_pictures.py`. Rebuilt without the workaround: same 193,920 frames, 57% well observed. Lesson: always pass `encoding="utf-8"` when opening data files.

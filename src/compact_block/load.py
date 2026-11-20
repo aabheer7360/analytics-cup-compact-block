@@ -13,7 +13,7 @@ def match_ids(data_dir: Path = DATA_DIR) -> list[str]:
 
 
 def load_meta(match_id: str, data_dir: Path = DATA_DIR) -> dict:
-    with open(Path(data_dir) / match_id / f"{match_id}_match.json") as f:
+    with open(Path(data_dir) / match_id / f"{match_id}_match.json", encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -32,7 +32,7 @@ def iter_tracking(match_id: str, frames: set[int] | None = None, data_dir: Path 
     than loading it all into memory.
     """
     path = Path(data_dir) / match_id / f"{match_id}_tracking_extrapolated.jsonl"
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         for line in f:
             if frames is not None:
                 # Cheap pre-check on the frame number before parsing the whole line.
